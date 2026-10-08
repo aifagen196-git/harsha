@@ -1,452 +1,786 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harshavardhan Reddy Arem — Network Engineer</title>
+<meta name="description" content="Network Engineer with 3+ years across enterprise LAN/WAN, data center, network security and hybrid cloud networking. CCNA certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    var t = null;
+    try { t = localStorage.getItem('hra-theme'); } catch(e) {}
+    if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+:root, :root[data-theme="dark"]{
+  --bg:#0D1211; --bg-2:#111917; --surface:#151F1D; --surface-2:#1B2725;
+  --line:rgba(214,230,222,.09); --line-2:rgba(214,230,222,.16);
+  --text:#E7EEEA; --muted:#93A49D; --faint:#62736C;
+  --amber:#F0A63A; --amber-soft:rgba(240,166,58,.12);
+  --teal:#45C1B4; --teal-soft:rgba(69,193,180,.12);
+  --shadow:0 20px 50px -24px rgba(0,0,0,.7);
+  --node:#2A3A36;
+}
+:root[data-theme="light"]{
+  --bg:#F3F0E8; --bg-2:#ECE7DB; --surface:#FBF9F4; --surface-2:#F4F0E6;
+  --line:rgba(22,32,28,.11); --line-2:rgba(22,32,28,.2);
+  --text:#16201D; --muted:#56655F; --faint:#86948E;
+  --amber:#B4680A; --amber-soft:rgba(180,104,10,.1);
+  --teal:#137C72; --teal-soft:rgba(19,124,114,.1);
+  --shadow:0 20px 50px -28px rgba(40,34,20,.35);
+  --node:#CFC8B8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16.5px;line-height:1.65;overflow-x:hidden;transition:background .45s ease,color .45s ease}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--amber);color:#111}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
 
-  <title>Harsha Vardhan Arem | Network Engineer</title>
+/* ---------- NAV ---------- */
+header.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+header.nav.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:-.01em}
+.brand-mark{width:30px;height:30px;border:1.5px solid var(--amber);border-radius:7px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--amber);position:relative}
+.brand-mark::after{content:"";position:absolute;right:-4px;top:-4px;width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px var(--bg)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.9rem;color:var(--muted);position:relative;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--amber);transition:width .3s ease}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,transform .2s;touch-action:manipulation}
+.icon-btn:hover{border-color:var(--amber);transform:translateY(-1px)}
+.icon-btn svg{width:18px;height:18px}
+.theme-btn .sun{display:none}
+:root[data-theme="light"] .theme-btn .sun{display:block}
+:root[data-theme="light"] .theme-btn .moon{display:none}
+.menu-btn{display:none}
+.mobile-menu{position:fixed;top:68px;left:0;right:0;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 16px 20px;display:flex;flex-direction:column;transform:translateY(-12px);opacity:0;visibility:hidden;transition:all .3s ease}
+.mobile-menu.open{transform:none;opacity:1;visibility:visible}
+.mobile-menu a{padding:14px 4px;border-bottom:1px solid var(--line);font-size:1rem}
+.mobile-menu a span{color:var(--amber);font-family:'JetBrains Mono',monospace;font-size:.75rem;margin-right:10px}
 
-  <meta
-    name="description"
-    content="Portfolio of Harsha Vardhan Arem - Network Engineer specializing in Enterprise Networking, Cisco Technologies, Cloud Networking, AWS, Azure, Python Automation and Network Security."
-  />
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden}
+#topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 25% 50%,var(--bg) 20%,transparent 75%)}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--teal);letter-spacing:.04em;margin-bottom:22px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);position:relative}
+.status-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--teal);animation:ping 2.2s ease-out infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(2);opacity:0}}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.6rem,6.4vw,5rem);line-height:.98;letter-spacing:-.035em}
+h1 .line{display:block;overflow:hidden}
+h1 .line > span{display:inline-block;transform:translateY(105%);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .line:nth-child(2) > span{animation-delay:.12s;color:var(--amber)}
+@keyframes rise{to{transform:none}}
+.role{margin-top:22px;font-size:1.12rem;color:var(--muted);max-width:540px;opacity:0;animation:fade .8s .45s forwards}
+.role strong{color:var(--text);font-weight:600}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:.88rem;color:var(--muted);opacity:0;animation:fade .8s .6s forwards}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px}
+.hero-meta svg{width:15px;height:15px;color:var(--amber)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;opacity:0;animation:fade .8s .75s forwards}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 22px;border-radius:10px;font-weight:600;font-size:.94rem;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s;cursor:pointer;border:1px solid transparent}
+.btn svg{width:16px;height:16px;transition:transform .25s}
+.btn-primary{background:var(--amber);color:#14110B}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px -12px var(--amber)}
+.btn-primary:hover svg{transform:translateX(3px)}
+.btn-ghost{border-color:var(--line-2);color:var(--text);background:color-mix(in srgb,var(--surface) 60%,transparent)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
 
-  <link rel="stylesheet" href="style.css" />
+/* terminal */
+.term{background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line-2);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;opacity:0;animation:fade .9s .5s forwards;backdrop-filter:blur(6px)}
+.term-bar{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--faint)}
+.term-dots{display:flex;gap:6px}
+.term-dots i{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.term-dots i:first-child{background:var(--amber)}
+.term-body{padding:16px 16px 18px;font-family:'JetBrains Mono',monospace;font-size:.76rem;line-height:1.75;min-height:318px;white-space:pre;overflow-x:auto;color:var(--muted)}
+.term-body .p{color:var(--teal)}
+.term-body .c{color:var(--text)}
+.term-body .ok{color:var(--teal)}
+.term-body .hl{color:var(--amber)}
+.cursor{display:inline-block;width:7px;height:1.05em;background:var(--amber);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.scroll-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--faint);letter-spacing:.12em}
+.scroll-hint i{width:1px;height:34px;background:linear-gradient(var(--amber),transparent);animation:drip 2s ease-in-out infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- STATS ---------- */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-2)}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr)}
+.stat{padding:30px 18px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;letter-spacing:-.02em;color:var(--text)}
+.stat b em{font-style:normal;color:var(--amber)}
+.stat span{font-size:.8rem;color:var(--muted);line-height:1.4;display:block;margin-top:4px}
+
+/* ---------- SECTIONS ---------- */
+section.block{padding:110px 0}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:52px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--amber)}
+.sec-head h2{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.sec-head .rule{flex:1;height:1px;background:var(--line-2);transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.2,.8,.2,1) .2s}
+.sec-head.in .rule{transform:scaleX(1)}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:start}
+.about-lead{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.3rem,2.2vw,1.65rem);line-height:1.38;letter-spacing:-.015em;font-weight:400}
+.about-lead mark{background:none;color:var(--amber);font-weight:600}
+.about-text{margin-top:22px;color:var(--muted)}
+.facts{border:1px solid var(--line-2);border-radius:14px;background:var(--surface);overflow:hidden}
+.fact{display:flex;justify-content:space-between;gap:16px;padding:15px 20px;border-bottom:1px solid var(--line);font-size:.92rem}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--faint);font-family:'JetBrains Mono',monospace;font-size:.76rem;padding-top:2px;white-space:nowrap}
+.fact dd{text-align:right;font-weight:500}
+
+/* experience */
+.exp{position:relative;padding-left:40px}
+.exp::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:1.5px;background:var(--line-2)}
+.exp-fill{position:absolute;left:11px;top:6px;width:1.5px;background:var(--amber);height:0;transition:height .15s linear}
+.job{position:relative;margin-bottom:34px}
+.job:last-child{margin-bottom:0}
+.job-node{position:absolute;left:-40px;top:22px;width:24px;height:24px;border-radius:7px;background:var(--bg);border:1.5px solid var(--line-2);display:grid;place-items:center;transition:border-color .4s}
+.job-node::after{content:"";width:8px;height:8px;border-radius:2px;background:var(--faint);transition:background .4s}
+.job.in .job-node{border-color:var(--amber)}
+.job.in .job-node::after{background:var(--amber)}
+.job-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 30px;transition:border-color .3s,transform .3s}
+.job-card:hover{border-color:var(--line-2)}
+.job-top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.job-top h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.45rem;font-weight:700;letter-spacing:-.02em}
+.job-top .org{color:var(--teal);font-weight:500;font-size:.98rem;margin-top:2px}
+.job-date{font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--muted);border:1px solid var(--line-2);padding:6px 11px;border-radius:7px;display:inline-flex;gap:8px;align-items:center;white-space:nowrap}
+.job-date .live{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px var(--teal-soft)}
+.job-tags{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 18px}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:4px 9px;border-radius:6px;background:var(--amber-soft);color:var(--amber)}
+.job ul{list-style:none;display:grid;gap:11px}
+.job li{position:relative;padding-left:22px;color:var(--muted);font-size:.96rem}
+.job li::before{content:"";position:absolute;left:2px;top:.72em;width:9px;height:1.5px;background:var(--amber)}
+.job li b{color:var(--text);font-weight:600}
+
+/* skills */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.tab{font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;padding:10px 16px;border-radius:9px;border:1px solid var(--line-2);background:transparent;color:var(--muted);cursor:pointer;transition:all .25s;touch-action:manipulation}
+.tab .n{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--faint);margin-left:7px}
+.tab:hover{color:var(--text);border-color:var(--faint)}
+.tab.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.tab.active .n{color:var(--bg);opacity:.6}
+.panel-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}
+.panel-intro{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+.panel-intro .layer{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--teal)}
+.panel-intro h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;letter-spacing:-.02em;margin:8px 0 10px;line-height:1.1}
+.panel-intro p{color:var(--muted);font-size:.94rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+.chip{padding:10px 15px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg-2);font-size:.9rem;font-weight:500;opacity:0;transform:translateY(10px) scale(.97);transition:border-color .2s,color .2s}
+.chip.show{animation:chipIn .45s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes chipIn{to{opacity:1;transform:none}}
+.chip:hover{border-color:var(--amber);color:var(--amber)}
+
+/* projects */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.proj{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s}
+.proj:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.proj::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),var(--amber-soft),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+.proj:hover::before{opacity:1}
+.proj-ill{height:120px;border-radius:12px;background:var(--bg-2);border:1px solid var(--line);margin-bottom:24px;position:relative;overflow:hidden}
+.proj-ill svg{width:100%;height:100%}
+.proj .kind{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--teal)}
+.proj h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.32rem;letter-spacing:-.02em;line-height:1.2;margin:8px 0 12px}
+.proj p{color:var(--muted);font-size:.94rem}
+.proj .job-tags{margin:18px 0 0}
+
+/* svg anim in projects */
+.flow{stroke-dasharray:4 6;animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-20}}
+.pulse-n{animation:pn 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pn{50%{transform:scale(1.25)}}
+
+/* credentials */
+.cred-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:22px}
+.cred{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 28px}
+.cred .k{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+.cred h3{font-family:'Bricolage Grotesque',sans-serif;font-size:1.22rem;letter-spacing:-.015em;margin:12px 0 4px;line-height:1.25}
+.cred .sub{color:var(--muted);font-size:.92rem}
+.cred .yr{display:inline-block;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--amber)}
+.badge{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:var(--teal-soft);color:var(--teal);margin-bottom:6px}
+.badge svg{width:22px;height:22px}
+
+/* contact */
+.contact{padding:120px 0 90px;border-top:1px solid var(--line);background:var(--bg-2);position:relative;overflow:hidden}
+.contact-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end}
+.contact h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.4rem,6vw,4.6rem);line-height:.98;letter-spacing:-.04em}
+.contact h2 span{color:var(--amber)}
+.contact p{color:var(--muted);margin-top:20px;max-width:460px}
+.links{display:grid;gap:12px}
+.link-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;border:1px solid var(--line-2);border-radius:12px;background:var(--surface);transition:border-color .25s,transform .25s}
+.link-row:hover{border-color:var(--amber);transform:translateX(4px)}
+.link-row .l{display:flex;align-items:center;gap:14px;min-width:0}
+.link-row .l svg{width:18px;height:18px;color:var(--amber);flex-shrink:0}
+.link-row .l div{min-width:0}
+.link-row small{display:block;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
+.link-row strong{font-weight:500;font-size:.96rem;word-break:break-all}
+.link-row .arr{width:16px;height:16px;color:var(--muted);flex-shrink:0;transition:transform .25s}
+.link-row:hover .arr{transform:translate(2px,-2px);color:var(--amber)}
+footer{padding:26px 0;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--faint)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .stat:nth-child(3){border-right:0}
+  .stat:nth-child(-n+3){border-bottom:1px solid var(--line)}
+  .about-grid,.panel-wrap,.contact-inner{grid-template-columns:1fr;gap:36px}
+  .cred-grid{grid-template-columns:1fr 1fr}
+  .cred-grid .cred:first-child{grid-column:1/-1}
+}
+@media (max-width:780px){
+  .nav-links{display:none}
+  .menu-btn{display:grid}
+  section.block{padding:80px 0}
+  .proj-grid,.cred-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat{border-right:1px solid var(--line)!important;border-bottom:1px solid var(--line)}
+  .stat:nth-child(2n){border-right:0!important}
+  .stat:nth-last-child(-n+2){border-bottom:0}
+  .exp{padding-left:30px}
+  .exp::before,.exp-fill{left:7px}
+  .job-node{left:-30px;width:16px;height:16px;border-radius:5px;top:26px}
+  .job-node::after{width:6px;height:6px}
+  .job-card{padding:22px 20px}
+  .term-body{font-size:.68rem;min-height:290px}
+  .sec-head{margin-bottom:38px}
+  .scroll-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  h1 .line > span{transform:none}
+}
+</style>
 </head>
-
 <body>
 
-  <!-- Scroll Progress -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-
-  <!-- ================= NAVBAR ================= -->
-
-  <header class="nav">
-
-    <a href="#home" class="logo">
-      Harsha<span>.</span>
-    </a>
-
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="brand-mark">HR</span>Harshavardhan Arem</a>
     <nav class="nav-links" id="navLinks">
-
-      <a href="#home" class="active">Home</a>
-
       <a href="#about">About</a>
-
-      <a href="#projects">Projects</a>
-
       <a href="#experience">Experience</a>
-
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#credentials">Credentials</a>
       <a href="#contact">Contact</a>
-
     </nav>
-
     <div class="nav-actions">
-
-      <button id="themeToggle" class="icon-btn">
-        🌙
+      <button class="icon-btn theme-btn" id="themeBtn" aria-label="Toggle colour theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
-
-      <!-- <button id="navToggle" class="icon-btn mobile-only">
-        ☰
-      </button> -->
-
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
     </div>
-
-  </header>
-
-  <!-- ================= HERO ================= -->
-
-  <section class="hero" id="home">
-
-    <div class="hero-avatar">
-      HV
-    </div>
-
-    <p class="hero-hi">
-      👋 Hello, I'm
-    </p>
-
-    <h1>
-      Harsha Vardhan Arem
-    </h1>
-
-    <h2>
-
-      <span class="static-text">
-        I'm a
-      </span>
-
-      <span id="typed" class="typed"></span>
-
-    </h2>
-
-    <p class="hero-sub">
-
-      Network Engineer with 3+ years of experience designing,
-      implementing and supporting enterprise network infrastructure
-      across on-premises and hybrid cloud environments.
-
-      Passionate about Cisco Networking, Cloud Infrastructure,
-      Network Security, Automation and Enterprise Connectivity.
-
-    </p>
-
-    <div class="hero-cta">
-
-      <a href="#projects" class="btn primary">
-        View Projects
-      </a>
-
-      <!-- <a href="resume.pdf" class="btn" download>
-
-        Download Resume
-
-      </a> -->
-
-    </div>
-
-    <div class="socials hero-socials">
-
-      <a href="https://www.linkedin.com/in/harshaarem123/ " target="_blank">
-
-        LinkedIn
-
-      </a>
-
-      <a href="mailto:aremharshavardhan25@gmail.com">
-
-        Email
-
-      </a>
-
-      <a href="tel:+13137371466">
-
-        Call
-
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-
-  <section id="about" class="section reveal">
-
-    <h3 class="section-title">
-
-      About Me
-
-    </h3>
-
-    <p class="about-text">
-
-      I'm a Network Engineer specializing in enterprise networking,
-      routing & switching, cloud connectivity, and network security.
-
-      Over the past 3+ years I've designed, deployed and maintained
-      highly available enterprise infrastructure using Cisco
-      technologies, AWS VPC, Azure Virtual Network and Python
-      automation.
-
-      I enjoy solving complex networking problems, improving network
-      performance and building secure, scalable infrastructure that
-      supports business growth.
-
-    </p>
-  </section>
-
- 
-    <!-- ================= PROJECTS ================= -->
-
-  <section id="projects" class="section reveal">
-
-    <h3 class="section-title">Featured Projects</h3>
-
-    <div class="filters">
-      <button class="filter active" data-filter="all">All</button>
-      <button class="filter" data-filter="cloud">Cloud</button>
-      <button class="filter" data-filter="network">Networking</button>
-    </div>
-
-    <div class="projects">
-
-      <article class="card" data-cat="cloud">
-        <div class="card-top">☁️</div>
-
-        <h4>Hybrid Cloud Network Connectivity</h4>
-
-        <p>
-          Built secure hybrid connectivity between enterprise data
-          centers and AWS VPC using Site-to-Site IPSec VPN,
-          Cisco ASA Firewalls and BGP routing while improving
-          network visibility through SolarWinds monitoring.
-        </p>
-
-        <div class="tags">
-          <span>AWS VPC</span>
-          <span>Cisco ASA</span>
-          <span>IPSec VPN</span>
-          <span>BGP</span>
-          <span>Python</span>
-        </div>
-
-      </article>
-
-      <article class="card" data-cat="network">
-
-        <div class="card-top">🌐</div>
-
-        <h4>Enterprise Campus Network Modernization</h4>
-
-        <p>
-          Redesigned enterprise campus infrastructure using
-          Cisco Catalyst Switches, VLANs, OSPF,
-          Inter-VLAN Routing, EtherChannel and STP while
-          automating configuration backups using Python
-          and Ansible.
-        </p>
-
-        <div class="tags">
-          <span>Cisco IOS</span>
-          <span>OSPF</span>
-          <span>VLAN</span>
-          <span>Ansible</span>
-          <span>Python</span>
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-  <!-- ================= EXPERIENCE ================= -->
-
-  <section id="experience" class="section reveal">
-
-    <h3 class="section-title">Professional Experience</h3>
-
-    <div class="timeline">
-
-      <div class="tl-item">
-
-        <div class="tl-dot"></div>
-
-        <span class="tl-date">
-          Aug 2024 – Present
-        </span>
-
-        <h4>Network Engineer</h4>
-
-        <p class="tl-org">
-          Hewlett Packard Enterprise
-        </p>
-
-        <ul>
-
-          <li>Designed and deployed enterprise LAN/WAN infrastructure using Cisco routers and switches.</li>
-
-          <li>Configured OSPF and BGP routing to reduce failover time from approximately four minutes to under one minute.</li>
-
-          <li>Maintained over 1,500 Cisco network devices including upgrades and preventive maintenance.</li>
-
-          <li>Monitored more than 10,000 daily network events using SolarWinds and Cisco DNA Center.</li>
-
-          <li>Implemented Cisco ASA firewall policies, ACLs and IPSec VPNs across enterprise branch locations.</li>
-
-          <li>Established secure AWS hybrid connectivity using Site-to-Site VPN.</li>
-
-          <li>Automated routine network tasks using Python and Ansible.</li>
-
-        </ul>
-
-      </div>
-
-      <div class="tl-item">
-
-        <div class="tl-dot"></div>
-
-        <span class="tl-date">
-          Jan 2022 – Jun 2023
-        </span>
-
-        <h4>Network Engineer</h4>
-
-        <p class="tl-org">
-          Wells Fargo
-        </p>
-
-        <ul>
-
-          <li>Configured Cisco routing and switching solutions for enterprise branch offices.</li>
-
-          <li>Implemented VLANs, Inter-VLAN Routing, EtherChannel and Spanning Tree Protocol.</li>
-
-          <li>Managed DNS, DHCP, TCP/IP and IPv4 services for more than 1,000 enterprise endpoints.</li>
-
-          <li>Investigated connectivity issues impacting over 8,000 monthly user sessions.</li>
-
-          <li>Maintained 99.9% network availability through proactive monitoring and troubleshooting.</li>
-
-          <li>Supported Azure Virtual Network connectivity for hybrid cloud workloads.</li>
-
-          <li>Administered Windows Server and Linux infrastructure supporting enterprise networking.</li>
-
-        </ul>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ================= EDUCATION ================= -->
-
-  <section class="section reveal">
-
-    <h3 class="section-title">
-      Education
-    </h3>
-
-    <div class="card">
-
-      <h4>Master of Science in Computer Science</h4>
-
-      <p>
-        Lawrence Technological University, USA
-      </p>
-
-      <p>
-        Aug 2023 – Dec 2025
-      </p>
-
-    </div>
-
-  </section>
-
-  <!-- ================= CERTIFICATIONS ================= -->
-
-  <section class="section reveal">
-
-    <h3 class="section-title">
-      Certifications
-    </h3>
-
-    <div class="projects">
-
-     <div class="card reveal">
-
-    <img src="assets/certificates/ccna-certificate.jpg"
-         alt="CCNA Certificate"
-         style="width:100%;border-radius:12px;margin-bottom:20px;">
-
-    <h4>Cisco Certified Network Associate (CCNA)</h4>
-
-    <p>
-        Issued: June 30, 2026<br>
-        Valid Until: June 30, 2029
-    </p>
-
-    <div class="tags">
-        <span>Cisco</span>
-        <span>CCNA</span>
-    </div>
-
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"><span>01</span>About</a>
+  <a href="#experience"><span>02</span>Experience</a>
+  <a href="#skills"><span>03</span>Skills</a>
+  <a href="#projects"><span>04</span>Projects</a>
+  <a href="#credentials"><span>05</span>Credentials</a>
+  <a href="#contact"><span>06</span>Contact</a>
 </div>
 
-     
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><span class="status-dot"></span>AVAILABLE · OPEN TO RELOCATE ACROSS THE USA</div>
+      <h1><span class="line"><span>Harshavardhan</span></span><span class="line"><span>Reddy Arem</span></span></h1>
+      <p class="role"><strong>Network Engineer</strong> keeping enterprise LAN/WAN, data center and hybrid cloud networks fast, secure and always up — across financial services and technology environments.</p>
+      <div class="hero-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>3+ years experience</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 5-3.4 8.6-7 10-3.6-1.4-7-5-7-10V6z"/></svg>Cisco CCNA</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>United States</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#experience" class="btn btn-ghost">View experience</a>
+      </div>
     </div>
-
-  </section>
-
-  <!-- ================= CONTACT ================= -->
-
-  <section id="contact" class="section reveal contact">
-
-    <h3 class="section-title">
-      Contact
-    </h3>
-
-    <p>
-      Interested in enterprise networking, cloud infrastructure,
-      automation or collaboration opportunities?
-    </p>
-
-    <div class="socials" style="margin:30px 0">
-
-      <a href="mailto:aremharshavardhan25@gmail.com">
-        📧 Email
-      </a>
-
-      <a href="tel:+13137371466">
-        📱 Phone
-      </a>
-
-     <a href="https://www.linkedin.com/in/harshaarem123/" target="_blank" class="social-btn">
-    <i class="fab fa-linkedin"></i>
-    <span> 💼 LinkedIn</span>
-</a>
-
+    <div class="term" aria-label="Terminal showing network status">
+      <div class="term-bar"><div class="term-dots"><i></i><i></i><i></i></div><span>ssh hra@core-rtr-01</span><span>22</span></div>
+      <div class="term-body" id="termBody"></div>
     </div>
+  </div>
+  <div class="scroll-hint"><i></i>SCROLL</div>
+</section>
 
-    <!-- <form class="contact-form" id="contactForm">
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><b><span data-count="500">0</span><em>+</em></b><span>Cisco routers, switches &amp; firewalls managed</span></div>
+    <div class="stat reveal d1"><b><span data-count="99.9" data-dec="1">0</span><em>%</em></b><span>Network availability maintained</span></div>
+    <div class="stat reveal d2"><b><span data-count="30">0</span><em>%</em></b><span>Faster routing convergence</span></div>
+    <div class="stat reveal d3"><b><span data-count="40">0</span><em>%</em></b><span>Less manual deployment via automation</span></div>
+    <div class="stat reveal d4"><b><span data-count="35">0</span><em>%</em></b><span>Lower MTTR on critical incidents</span></div>
+    <div class="stat reveal d4"><b><span data-count="2000">0</span><em>+</em></b><span>Banking users supported</span></div>
+  </div>
+</div>
 
-      <input
-        type="text"
-        placeholder="Your Name"
-        required
-      />
+<!-- ================= ABOUT ================= -->
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">01</span><h2>About</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="about-lead">I design, run and troubleshoot the networks that businesses quietly depend on — from <mark>BGP and OSPF</mark> across distributed WANs to <mark>hybrid links into AWS and Azure</mark>.</p>
+        <p class="about-text">Over three years at CGI and Wells Fargo I've managed large Cisco estates, secured perimeters with Cisco ASA and Palo Alto firewalls, migrated on-prem segments into AWS VPC architectures, and written Python and Ansible tooling that takes repetitive work off the team. I'm comfortable in the middle of an outage with Wireshark open, and just as comfortable in an ITIL change window making sure nobody notices the upgrade happened.</p>
+        <p class="about-text">I work closely with cloud, security and Microsoft 365 teams on high availability, disaster recovery and capacity planning — and I write the documentation and SOPs that keep everyone aligned afterwards.</p>
+      </div>
+      <dl class="facts reveal d2">
+        <div class="fact"><dt>CURRENT</dt><dd>Network Engineer, CGI</dd></div>
+        <div class="fact"><dt>FOCUS</dt><dd>Routing, Security, Cloud Networking</dd></div>
+        <div class="fact"><dt>VENDORS</dt><dd>Cisco · Palo Alto · AWS · Azure</dd></div>
+        <div class="fact"><dt>AUTOMATION</dt><dd>Python · Ansible · Bash</dd></div>
+        <div class="fact"><dt>EDUCATION</dt><dd>MS Computer Science</dd></div>
+        <div class="fact"><dt>LOCATION</dt><dd>USA · Open to relocate</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
 
-      <input
-        type="email"
-        placeholder="Your Email"
-        required
-      />
+<!-- ================= EXPERIENCE ================= -->
+<section class="block" id="experience" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">02</span><h2>Experience</h2><span class="rule"></span></div>
+    <div class="exp" id="exp">
+      <span class="exp-fill" id="expFill"></span>
 
-      <textarea
-        rows="5"
-        placeholder="Write your message..."
-        required
-      ></textarea>
+      <article class="job reveal">
+        <span class="job-node"></span>
+        <div class="job-card">
+          <div class="job-top">
+            <div><h3>Network Engineer</h3><div class="org">CGI · USA</div></div>
+            <span class="job-date"><span class="live"></span>Aug 2024 — Present</span>
+          </div>
+          <div class="job-tags"><span class="tag">BGP</span><span class="tag">OSPF</span><span class="tag">Palo Alto</span><span class="tag">Cisco ASA</span><span class="tag">AWS TGW</span><span class="tag">Ansible</span></div>
+          <ul>
+            <li>Administer an enterprise estate of <b>500+ Cisco routers, switches and firewalls</b>, holding <b>99.9% availability</b> through proactive monitoring and preventive maintenance.</li>
+            <li>Designed and optimised OSPF and BGP routing across geographically distributed WANs, cutting <b>convergence time by 30%</b>.</li>
+            <li>Configure and manage Cisco ASA and Palo Alto firewalls, IPSec/SSL VPNs and security policies to protect enterprise infrastructure and reduce security incidents.</li>
+            <li>Led the migration of legacy on-prem segments to a <b>hybrid AWS VPC architecture</b> using Transit Gateway and Direct Connect — secure, scalable connectivity with minimal migration downtime.</li>
+            <li>Automated device provisioning, config validation and compliance checks with Python and Ansible, reducing <b>manual deployment effort by 40%</b>.</li>
+            <li>Drive advanced L2/L3 troubleshooting with Wireshark, SolarWinds and SNMP, lowering <b>MTTR by 35%</b> on critical incidents.</li>
+            <li>Plan and execute upgrades, firmware maintenance and expansions through ITIL change management with zero service disruption.</li>
+            <li>Partner with cloud, infrastructure, cybersecurity and Microsoft 365 teams on HA, disaster recovery and capacity planning for business-critical apps.</li>
+          </ul>
+        </div>
+      </article>
 
-      <button class="btn primary">
-        Send Message
-      </button>
+      <article class="job reveal">
+        <span class="job-node"></span>
+        <div class="job-card">
+          <div class="job-top">
+            <div><h3>Network Engineer</h3><div class="org">Wells Fargo · India</div></div>
+            <span class="job-date">Jan 2022 — Jun 2023</span>
+          </div>
+          <div class="job-tags"><span class="tag">EIGRP</span><span class="tag">HSRP</span><span class="tag">VLANs</span><span class="tag">Azure ExpressRoute</span><span class="tag">PRTG</span><span class="tag">Nagios</span></div>
+          <ul>
+            <li>Configured and supported enterprise LAN/WAN — VLANs, inter-VLAN routing, EIGRP and STP — for reliable connectivity to <b>2,000+ users</b>.</li>
+            <li>Implemented HSRP gateway redundancy and failover designs to raise availability for mission-critical banking applications.</li>
+            <li>Monitored health and bandwidth with PRTG, Nagios and SNMP, resolving bottlenecks that <b>improved application response times by 20%</b>.</li>
+            <li>Configured NAT, ACLs, DHCP and DNS while enforcing security policy across branch offices and data centers.</li>
+            <li>Built secure hybrid connectivity with <b>Azure VNet, ExpressRoute and NSGs</b> between on-prem banking infrastructure and Azure-hosted applications.</li>
+            <li>Ran Cisco IOS upgrades, vulnerability remediation and routine maintenance in line with banking security standards.</li>
+            <li>Managed telecom connectivity end to end with ISPs and vendors — circuit provisioning, failover testing and WAN outage troubleshooting.</li>
+            <li>Produced topology diagrams, configuration documentation and SOPs that streamlined troubleshooting and operations.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-      <p class="form-note" id="formNote"></p>
+<!-- ================= SKILLS ================= -->
+<section class="block" id="skills" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">03</span><h2>Toolkit</h2><span class="rule"></span></div>
+    <div class="tabs reveal" id="tabs" role="tablist"></div>
+    <div class="panel-wrap reveal d1">
+      <div class="panel-intro">
+        <div class="layer" id="pLayer"></div>
+        <h3 id="pTitle"></h3>
+        <p id="pDesc"></p>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+</section>
 
-    </form>
+<!-- ================= PROJECTS ================= -->
+<section class="block" id="projects" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">04</span><h2>Projects</h2><span class="rule"></span></div>
+    <div class="proj-grid">
+      <article class="proj reveal">
+        <div class="proj-ill">
+          <svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <g stroke="var(--line-2)" stroke-width="1.2" fill="none">
+              <path d="M200 26 L90 88"/><path d="M200 26 L160 92"/><path d="M200 26 L240 92"/><path d="M200 26 L310 88"/>
+            </g>
+            <g stroke="var(--amber)" stroke-width="1.6" fill="none">
+              <path class="flow" d="M200 26 L90 88"/><path class="flow" d="M200 26 L310 88" style="animation-delay:-.8s"/>
+            </g>
+            <g stroke="var(--teal)" stroke-width="1.6" fill="none"><path class="flow" d="M200 26 L160 92" style="animation-delay:-.4s"/><path class="flow" d="M200 26 L240 92" style="animation-delay:-1.2s"/></g>
+            <rect x="178" y="12" width="44" height="26" rx="6" fill="var(--surface)" stroke="var(--amber)" stroke-width="1.5"/>
+            <text x="200" y="29" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="var(--amber)">CTRL</text>
+            <g fill="var(--surface)" stroke="var(--teal)" stroke-width="1.5">
+              <circle class="pulse-n" cx="90" cy="92" r="8"/><circle class="pulse-n" cx="160" cy="96" r="8" style="animation-delay:.6s"/><circle class="pulse-n" cx="240" cy="96" r="8" style="animation-delay:1.2s"/><circle class="pulse-n" cx="310" cy="92" r="8" style="animation-delay:1.8s"/>
+            </g>
+          </svg>
+        </div>
+        <span class="kind">SDN · AUTOMATION</span>
+        <h3>Software-Defined Network Automation Framework for Enterprise Campus Networks</h3>
+        <p>Designed and simulated an SDN architecture where centralised controllers automate policy enforcement and dynamic traffic engineering across a campus. Built a REST API-based controller to orchestrate management, optimise traffic flows and improve scalability through software-defined control.</p>
+        <div class="job-tags"><span class="tag">SDN</span><span class="tag">REST API</span><span class="tag">Python</span><span class="tag">Traffic Engineering</span></div>
+      </article>
 
-  </section> -->
+      <article class="proj reveal d2">
+        <div class="proj-ill">
+          <svg viewBox="0 0 400 120" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <g fill="none" stroke="var(--line-2)" stroke-width="1.2" stroke-dasharray="3 4">
+              <rect x="210" y="14" width="160" height="40" rx="8"/><rect x="210" y="66" width="160" height="40" rx="8"/>
+            </g>
+            <path d="M60 60 L150 60" stroke="var(--line-2)" stroke-width="1.2"/>
+            <path class="flow" d="M60 60 L150 60" stroke="var(--teal)" stroke-width="1.6"/>
+            <path class="flow" d="M178 50 L230 34" stroke="var(--teal)" stroke-width="1.6" fill="none" style="animation-delay:-.6s"/>
+            <path d="M178 70 L230 86" stroke="var(--amber)" stroke-width="1.6" fill="none"/>
+            <path d="M223 80 l12 12 M235 80 l-12 12" stroke="var(--amber)" stroke-width="1.8"/>
+            <circle cx="50" cy="60" r="12" fill="var(--surface)" stroke="var(--text)" stroke-width="1.4"/>
+            <circle cx="50" cy="56" r="3.5" fill="var(--text)"/><path d="M43 66 q7 -6 14 0" stroke="var(--text)" stroke-width="1.4" fill="none"/>
+            <path d="M164 44 l14 6 v10 c0 8 -6 13 -14 16 c-8 -3 -14 -8 -14 -16 v-10z" fill="var(--surface)" stroke="var(--teal)" stroke-width="1.5" class="pulse-n"/>
+            <g font-family="JetBrains Mono" font-size="9"><text x="290" y="38" text-anchor="middle" fill="var(--teal)">APP · ALLOW</text><text x="290" y="90" text-anchor="middle" fill="var(--amber)">LATERAL · DENY</text></g>
+          </svg>
+        </div>
+        <span class="kind">SECURITY · HYBRID CLOUD</span>
+        <h3>Zero Trust Secure Remote Access Architecture for Hybrid Cloud Environments</h3>
+        <p>Designed a ZTNA architecture with identity-based access control, micro-segmentation and MFA. Built a threat-simulation environment to test lateral-movement techniques and validate Zero Trust policies, shrinking the potential attack surface through policy-driven access.</p>
+        <div class="job-tags"><span class="tag">ZTNA</span><span class="tag">Micro-segmentation</span><span class="tag">MFA</span><span class="tag">Threat Simulation</span></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-  <button
-    id="backToTop"
-    class="back-to-top"
-  >
-    ↑
-  </button>
+<!-- ================= CREDENTIALS ================= -->
+<section class="block" id="credentials" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-num">05</span><h2>Education &amp; Certifications</h2><span class="rule"></span></div>
+    <div class="cred-grid">
+      <div class="cred reveal">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></svg></div>
+        <div class="k">Education</div>
+        <h3>Master of Science in Computer Science</h3>
+        <div class="sub">Lawrence Technological University, USA</div>
+        <span class="yr">2023 — 2025</span>
+      </div>
+      <div class="cred reveal d1">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg></div>
+        <div class="k">Certification</div>
+        <h3>Cisco Certified Network Associate (CCNA)</h3>
+        <div class="sub">Cisco</div>
+      </div>
+      <div class="cred reveal d2">
+        <div class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/></svg></div>
+        <div class="k">Certification</div>
+        <h3>Salesforce Certified Platform Administrator</h3>
+        <div class="sub">Salesforce</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div class="reveal">
+      <span class="sec-num">06 — CONTACT</span>
+      <h2 style="margin-top:16px">Let's keep your<br>network <span>up/up.</span></h2>
+      <p>Open to Network Engineer roles across the United States and happy to relocate. The fastest way to reach me is email or phone.</p>
+    </div>
+    <div class="links reveal d2">
+      <a class="link-row" href="mailto:harshavardhanreddy1466@gmail.com">
+        <span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><small>Email</small><strong>harshavardhanreddy1466@gmail.com</strong></div></span>
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="link-row" href="tel:+13137371466">
+        <span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div><small>Phone</small><strong>+1 (313) 737-1466</strong></div></span>
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+      <!-- Replace # with the LinkedIn profile URL -->
+      <a class="link-row" href="#" target="_blank" rel="noopener">
+        <span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg><div><small>LinkedIn</small><strong>Connect on LinkedIn</strong></div></span>
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
 
-    <p>
+<footer>
+  <div class="wrap"><span>© <span id="yr"></span> Harshavardhan Reddy Arem</span><span>Network Engineer · USA</span></div>
+</footer>
 
-      © <span id="year"></span>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-      Harsha Vardhan Arem
+  /* ---------- theme ---------- */
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('hra-theme', next); } catch(e) {}
+    readColors();
+  });
 
-      <br><br>
+  /* ---------- nav ---------- */
+  var nav = document.getElementById('nav');
+  var menuBtn = document.getElementById('menuBtn');
+  var mm = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', function(){
+    var open = mm.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mm.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); }); });
 
-      Network Engineer • Enterprise Networking • Cisco • AWS • Azure • Python
+  var links = document.querySelectorAll('#navLinks a');
+  var secs = Array.prototype.map.call(links, function(a){ return document.querySelector(a.getAttribute('href')); });
+  var exp = document.getElementById('exp'), fill = document.getElementById('expFill');
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 20);
+    var cur = -1;
+    secs.forEach(function(s,i){ if (s && s.getBoundingClientRect().top < window.innerHeight * .35) cur = i; });
+    links.forEach(function(a,i){ a.classList.toggle('active', i === cur); });
+    var r = exp.getBoundingClientRect();
+    var p = Math.min(1, Math.max(0, (window.innerHeight * .6 - r.top) / r.height));
+    fill.style.height = (p * (r.height - 12)) + 'px';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
 
-    </p>
+  /* ---------- reveal + counters ---------- */
+  function count(el){
+    var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec || 0, 10);
+    if (reduce) { el.textContent = target.toLocaleString(undefined,{minimumFractionDigits:dec}); return; }
+    var t0 = null, dur = 1600;
+    function step(t){
+      if (!t0) t0 = t;
+      var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 4);
+      el.textContent = (target * e).toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec});
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      en.target.querySelectorAll('[data-count]').forEach(count);
+      io.unobserve(en.target);
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal, .sec-head').forEach(function(el){ io.observe(el); });
 
-  </footer>
+  /* ---------- project spotlight ---------- */
+  document.querySelectorAll('.proj').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
 
-  <script src="script.js"></script>
+  /* ---------- skills tabs ---------- */
+  var groups = [
+    {k:'Routing & Switching', layer:'L2 / L3', title:'Routing & Switching', desc:'Designing and tuning Cisco campus, WAN and data center fabrics — dynamic routing, redundancy and loop-free Layer 2.', items:['Cisco IOS / IOS-XE','Cisco Catalyst','Cisco Nexus','OSPF','EIGRP','BGP','STP / RSTP / MSTP','HSRP','VRRP','Inter-VLAN Routing','EtherChannel (LACP)']},
+    {k:'Network Security', layer:'PERIMETER & ACCESS', title:'Network Security', desc:'Firewalls, VPNs and access control that protect enterprise and banking infrastructure without slowing it down.', items:['Cisco ASA','Palo Alto Firewalls','ACLs','IPSec VPN','SSL VPN','Zero Trust Architecture','Cisco ISE','NAC','IDS / IPS','AAA','RADIUS','TACACS+','Security Hardening']},
+    {k:'Cloud Networking', layer:'HYBRID', title:'Cloud Networking', desc:'Extending the enterprise into AWS and Azure with secure, highly available hybrid connectivity.', items:['AWS VPC','AWS Transit Gateway','AWS Direct Connect','Azure VNet','Azure ExpressRoute','Azure NSGs','Hybrid Cloud Networking','Cisco ACI','VMware NSX']},
+    {k:'Core Networking', layer:'FOUNDATIONS', title:'Core Networking', desc:'The protocols and services every reliable network is built on.', items:['TCP/IP','IPv4 / IPv6','LAN / WAN / WLAN','VLAN','VXLAN','MPLS','SD-WAN','VPN','QoS','DNS','DHCP','NAT / PAT','SNMP','NTP','Multicast','Network Segmentation']},
+    {k:'Automation & Monitoring', layer:'OPERATIONS', title:'Automation & Monitoring', desc:'Scripting the repetitive and watching everything else — so problems surface before users notice.', items:['Python','Ansible','Bash','SolarWinds','Wireshark','PRTG','Nagios','Cisco DNA Center','NetFlow','Syslog']},
+    {k:'Practice & Tools', layer:'PROCESS', title:'Practice & Tools', desc:'How the work gets planned, changed, documented and recovered.', items:['ITIL Framework','Change Management','Incident Management','Root Cause Analysis','Disaster Recovery','High Availability','Capacity Planning','Configuration Management','ServiceNow','Jira','Git','Infoblox / IPAM','Microsoft 365','Microsoft Visio']}
+  ];
+  var tabs = document.getElementById('tabs'), chips = document.getElementById('chips');
+  var pL = document.getElementById('pLayer'), pT = document.getElementById('pTitle'), pD = document.getElementById('pDesc');
+  groups.forEach(function(g,i){
+    var b = document.createElement('button');
+    b.className = 'tab' + (i === 0 ? ' active' : '');
+    b.setAttribute('role','tab');
+    b.innerHTML = g.k + '<span class="n">' + String(g.items.length).padStart(2,'0') + '</span>';
+    b.addEventListener('click', function(){ select(i); });
+    tabs.appendChild(b);
+  });
+  function select(i){
+    var g = groups[i];
+    tabs.querySelectorAll('.tab').forEach(function(t,j){ t.classList.toggle('active', j === i); });
+    pL.textContent = '// ' + g.layer; pT.textContent = g.title; pD.textContent = g.desc;
+    chips.innerHTML = '';
+    g.items.forEach(function(s,j){
+      var c = document.createElement('span');
+      c.className = 'chip'; c.textContent = s;
+      c.style.animationDelay = (j * 35) + 'ms';
+      chips.appendChild(c);
+      requestAnimationFrame(function(){ c.classList.add('show'); });
+    });
+  }
+  select(0);
 
+  /* ---------- terminal typing ---------- */
+  var term = document.getElementById('termBody');
+  var script = [
+    {cmd:'show ip bgp summary'},
+    {out:'Neighbor        AS     Up/Down   State/PfxRcd\n10.20.0.2    65010    6w2d      <span class="ok">412</span>\n10.20.0.6    65020    6w2d      <span class="ok">388</span>\n172.31.0.1   64512    3w4d      <span class="ok">96</span>   <span class="hl">! AWS DX</span>'},
+    {cmd:'show standby brief'},
+    {out:'Interface  Grp  Pri  State    Virtual IP\nVl10       10   110  <span class="ok">Active</span>   10.10.10.1\nVl20       20   110  <span class="ok">Active</span>   10.10.20.1'},
+    {cmd:'ansible-playbook compliance.yml'},
+    {out:'PLAY RECAP ************************\nedge + core : <span class="ok">ok=512</span>  changed=0  failed=0'}
+  ];
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  var html = '', prompt = '<span class="p">core-rtr-01#</span> ';
+  function render(extra){ term.innerHTML = html + (extra || '') + '<span class="cursor"></span>'; }
+  if (reduce) {
+    script.forEach(function(s){ html += s.cmd ? prompt + '<span class="c">' + esc(s.cmd) + '</span>\n' : s.out + '\n\n'; });
+    html += prompt; render();
+  } else {
+    var si = 0;
+    function next(){
+      if (si >= script.length) { html += prompt; render(); return; }
+      var s = script[si++];
+      if (s.out) { html += s.out + '\n\n'; render(); setTimeout(next, 650); return; }
+      var i = 0;
+      (function type(){
+        render(prompt + '<span class="c">' + esc(s.cmd.slice(0,i)) + '</span>');
+        if (i++ < s.cmd.length) setTimeout(type, 38 + Math.random()*45);
+        else { html += prompt + '<span class="c">' + esc(s.cmd) + '</span>\n'; setTimeout(next, 380); }
+      })();
+    }
+    render(); setTimeout(next, 1100);
+  }
+
+  /* ---------- topology canvas ---------- */
+  var cv = document.getElementById('topo'), ctx = cv.getContext('2d');
+  var W, H, dpr, nodes = [], edges = [], packets = [], col = {}, mouse = {x:-999,y:-999}, running = true;
+  function readColors(){
+    var cs = getComputedStyle(root);
+    col.line = cs.getPropertyValue('--line-2').trim();
+    col.node = cs.getPropertyValue('--node').trim();
+    col.amber = cs.getPropertyValue('--amber').trim();
+    col.teal = cs.getPropertyValue('--teal').trim();
+    col.bg = cs.getPropertyValue('--bg').trim();
+  }
+  function build(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    nodes = []; edges = []; packets = [];
+    var mobile = W < 780;
+    // three tiers: core, distribution, access — placed toward the right on desktop
+    var x0 = mobile ? W * .05 : W * .42, x1 = W * .97;
+    var tiers = mobile ? [2,4,6] : [3,5,8];
+    var ys = mobile ? [H*.80, H*.89, H*.97] : [H*.2, H*.5, H*.82];
+    tiers.forEach(function(n,t){
+      for (var i=0;i<n;i++){
+        var x = x0 + (x1 - x0) * (n === 1 ? .5 : (i + .5) / n) + (Math.random()-.5)*24;
+        var y = ys[t] + (Math.random()-.5) * (mobile ? 20 : 40);
+        nodes.push({x:x,y:y,t:t,r:t===0?6:t===1?4.5:3.2,ph:Math.random()*6.28});
+      }
+    });
+    var byT = [0,1,2].map(function(t){ return nodes.filter(function(n){return n.t===t;}); });
+    // core full mesh
+    for (var a=0;a<byT[0].length;a++) for (var b=a+1;b<byT[0].length;b++) edges.push([byT[0][a],byT[0][b]]);
+    // dist -> two nearest core
+    byT[1].forEach(function(d){ near(d,byT[0],2).forEach(function(c){ edges.push([d,c]); }); });
+    // access -> two nearest dist
+    byT[2].forEach(function(a){ near(a,byT[1],2).forEach(function(d){ edges.push([a,d]); }); });
+  }
+  function near(n, arr, k){ return arr.slice().sort(function(a,b){ return dist(n,a)-dist(n,b); }).slice(0,k); }
+  function dist(a,b){ return Math.hypot(a.x-b.x,a.y-b.y); }
+  function spawn(){
+    var e = edges[(Math.random()*edges.length)|0];
+    if (!e) return;
+    var fwd = Math.random() < .5;
+    packets.push({a:fwd?e[0]:e[1], b:fwd?e[1]:e[0], p:0, s:.004 + Math.random()*.008, c:Math.random()<.6?col.teal:col.amber});
+  }
+  var last = 0;
+  function frame(t){
+    if (!running && !reduce) return;
+    ctx.clearRect(0,0,W,H);
+    ctx.lineWidth = 1;
+    edges.forEach(function(e){
+      var hot = Math.min(dist(e[0],mouse), dist(e[1],mouse)) < 120;
+      ctx.strokeStyle = hot ? col.amber : col.line;
+      ctx.globalAlpha = hot ? .55 : 1;
+      ctx.beginPath(); ctx.moveTo(e[0].x,e[0].y); ctx.lineTo(e[1].x,e[1].y); ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+    if (t - last > 140 && packets.length < 40) { spawn(); last = t; }
+    packets = packets.filter(function(p){
+      p.p += p.s;
+      if (p.p >= 1) { p.b.flash = 1; return false; }
+      var x = p.a.x + (p.b.x-p.a.x)*p.p, y = p.a.y + (p.b.y-p.a.y)*p.p;
+      ctx.fillStyle = p.c; ctx.globalAlpha = .9;
+      ctx.beginPath(); ctx.arc(x,y,1.9,0,6.283); ctx.fill();
+      ctx.globalAlpha = .18; ctx.beginPath(); ctx.arc(x,y,5,0,6.283); ctx.fill();
+      ctx.globalAlpha = 1;
+      return true;
+    });
+    nodes.forEach(function(n){
+      n.flash = (n.flash || 0) * .93;
+      var r = n.r + Math.sin(t*.002 + n.ph)*.4;
+      if (n.flash > .05) {
+        ctx.strokeStyle = n.t===0 ? col.amber : col.teal; ctx.globalAlpha = n.flash*.7;
+        ctx.beginPath(); ctx.arc(n.x,n.y,r + (1-n.flash)*12,0,6.283); ctx.stroke(); ctx.globalAlpha = 1;
+      }
+      ctx.fillStyle = col.bg; ctx.strokeStyle = n.t===0 ? col.amber : (n.flash>.3 ? col.teal : col.node);
+      ctx.lineWidth = 1.5;
+      if (n.t === 0) { ctx.beginPath(); ctx.rect(n.x-r,n.y-r,r*2,r*2); }
+      else { ctx.beginPath(); ctx.arc(n.x,n.y,r,0,6.283); }
+      ctx.fill(); ctx.stroke(); ctx.lineWidth = 1;
+    });
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  readColors(); build();
+  if (reduce) { frame(0); }
+  else requestAnimationFrame(frame);
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(build, 200); });
+  window.addEventListener('pointermove', function(e){ var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; }, {passive:true});
+  new IntersectionObserver(function(en){
+    if (reduce) return;
+    var vis = en[0].isIntersecting;
+    if (vis && !running) { running = true; requestAnimationFrame(frame); }
+    running = vis;
+  }).observe(cv);
+  window.readColors = readColors;
+})();
+</script>
 </body>
-
 </html>
